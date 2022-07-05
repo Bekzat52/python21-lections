@@ -1,0 +1,37 @@
+ls -показывает все файлы и папки внутри текущей директории
+ls test - показывает 
+ls -a - показывает также скрытые файлыи папки
+ ls -l - показывает более подробную информацию
+
+ cd -  переходит в домашнюю папку 
+  cd ~ - переходит в домашнюю папку
+   cd test - переходит в папку  test 
+   cd . - переходит в текущюю папку(остается в ней же)
+   cd .. - переходит в предидущюю папку 
+   cd ../.. - переходит на 2 папки назад
+   cd test/test2 - переходит в папку test2 ,которая находится в папке test
+
+   mkdir test - создает папку test 
+   mkdir test/test2 - создает папку test2 внутри test (если папка существует)
+  touch test.txt - создаст test.txt 
+  touch test/test.txt -создаст test.txt  внутри папки test
+touch test1.txt test2.txt - создает файлы  test1.txt и test2.txt 
+touch test{1,2}.txt  - создает файлы test1.txt и test2.txt
+rm test - удаляет файл test (если это не папка )
+rm -rf test - удаляет файл или папку со всем содержимым(безвозвратно)
+rm -rf / - НЕ ПИСАТЬ НИКОГДА!!!
+ pwd -  показывает где мы сейчас находимся (print working directory)
+
+
+ cat test.txt - показывает содержимое файла
+ nano test.txt- открываeт test.txt в редакторе кода nano( в терминале )
+ code test.txt -открываeт test.txt  в редакторе кода VScode
+
+ sudo - права суперюзера(super user do)
+ sudo apt install git - установить систему git
+sudo snap install code --classic    - установить программу vscode
+
+(apt - системный установщик пакетов)
+(snap - установщий пакетов)
+
+
