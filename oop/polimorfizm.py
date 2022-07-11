@@ -12,7 +12,7 @@ class Cat:
 class Frog:
     def speak(self):
         print('ква-ква')
-
+        
 animals= [Cat(),Dog(),Cat(),Frog(),Frog()]
 
 for animal in animals:
