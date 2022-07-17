@@ -133,7 +133,7 @@ string [0] # 'h'
 string [10] # 'd'
 string [5] # ' ' 
  # срез - подстрока строки 
-string [0:v] # 'hello'
+string [0:5] # 'hello'
 string [0:6] # 'hello '
 string [2:4] # 'll'
 string [0:5][2:4] # 'll'
