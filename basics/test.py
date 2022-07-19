@@ -252,3 +252,240 @@ example.append('hello')
 print(example) 
 print(example.pop()) 
 print(example) 
+
+
+"""
+Создайте класс ContactList, который должен наследоваться от встроенного класса list.
+
+В вашем классе должен быть реализован метод search_by_name, который должен принимать имя и возвращать список всех совпадений.
+
+Создайте экземпляр класса в переменной all_contacts и передайте список ваших контактов.
+
+Примерный ввод:
+
+all_contacts = ContactList(['Ivan', 'Maris', 'Olga', 'Ivan Olya', 'Olya Ivan', 'ivan']) 
+print(all_contacts.search_by_name('Olya')) 
+Метод search_by_name возвращает все строки содержащие подстроку "Olya":
+
+
+
+"""
+
+class ContactList(list):
+
+    def __init__(self, value=list()):
+        self.value = value
+
+    def search_by_name(self, name):
+        self.name = name
+        list_ = []
+        for i in self.value :
+            if i.find(self.name) != -1:
+                list_.append(i)
+        return list_
+all_contacts = ContactList(['Ivan', 'Maris', 'Olga', 'Ivan Olya', 'Olya Ivan', 'ivan']) 
+print(all_contacts.search_by_name('Olya')) 
+    
+            
+
+"""
+Принципы ООП. Наследование.
+Задание 7
+Создайте класс SmartPhones, экземпляры класса должны иметь такие свойства:
+
+name - название
+color - цвет
+memory - память
+battery - процент заряда батареи
+Значение battery по умолчанию должно быть 0.
+
+Переопредилите метод str так чтобы при распечатке он выдавал строку с названием и памятью смартфона.
+
+У данного класса также должен быть метод charge, который увеличивает значение батареи на указанную величину.
+
+Создайте два дочерних класса от Smartphones:
+
+Iphone - с дополнительным аттрибутом экземпляра - ios и методом send_imessage(принимает в аргументы строку и возвращает эту строку и от какого телефона сообщение было выслано в таком формате - sending 'ваша строка' from 'название объекта-телефона')
+
+Samsung - с дополнительным аттрибутом android и методом show_time(который показывает текущее время)
+
+Создайте объекты phone, iphone7, samsung21 от классов SmartPhones, Iphone, Samsung и примените все методы.
+
+Для правильной работы тестов, проделайте все следующие операции:
+
+создайте объект от класса SmartPhones:
+
+phone = SmartPhones('generic', 'blue', '128GB') 
+print(phone) вывод:
+
+generic 128GB
+распечатайте свойство батарейки,затем примените метод charge(), зарядив телефон до 20%:
+
+print(phone.battery) 
+phone.charge(20) 
+print(phone.battery) 
+получим в терминале:
+
+0 
+20 
+создайте объект от класс Iphone, распечатайте этот объект, и примените метод send_imessage:iphone7 = Iphone('Iphone 7', 'gold', '128gb', '12.1.3') 
+print(iphone7)
+print(iphone7.send_imessage('hello')) 
+вывод будет:
+
+Iphone 7 128gb 
+sending hello from Iphone 7 128gb 
+создайте объект от Samsung и примените метод show_time():
+
+samsung21 = Samsung('Samsung A21', 'black', '256gb', 'Oreo') 
+print(samsung21.show_time()) 
+вывод будет:
+
+18:37:02.712036 
+"""
+
+class SmartPhones:
+    def __init__(self, name, color, memory, battery = 0):
+        self.name = name
+        self.color = color
+        self.memory = memory
+        self.battery = battery
+
+    def __str__(self):
+        return f'{self.name} {self.memory}'
+
+    def charge(self,power):
+        if power <= 100 and power > 0:
+            self.battery += power
+            return self.battery
+        
+        elif power >100:
+            self.battery += 100
+
+        elif power < 0 :
+            raise Exception ('ChargeError')
+
+class Iphone(SmartPhones):
+    def __init__(self, name, color, memory,OS, battery = 0):
+        super().__init__(name, color, memory, battery)
+        self.OS = OS
+
+    def send_imessage(self, message):
+        return f'sending {message} from {self.name} {self.memory}'
+
+class Samsung(SmartPhones):
+    def __init__(self, name, color, memory, OS, battery = 0) :
+        super().__init__(name, color, memory, battery)
+        self.OS = OS
+
+    def show_time(self):
+        from datetime import datetime
+        current_time = datetime.now()
+        return current_time.time()
+        
+
+phone = SmartPhones('generic', 'blue', '128GB') 
+print(phone) 
+
+print(phone.battery) 
+phone.charge(20) 
+print(phone.battery) 
+
+iphone7 = Iphone('Iphone 7', 'gold', '128gb', '12.1.3') 
+print(iphone7)
+print(iphone7.send_imessage('hello')) 
+
+
+samsung21 = Samsung('Samsung A21', 'black', '256gb', 'Oreo') 
+print(samsung21.show_time())
+
+
+"""
+Принципы ООП. Наследование.
+Задание 8
+Напишите класс CustomError который наследуется от встроенного класса исключений Exception.
+
+Переопределите __init__ таким образом чтобы через экземпляр класса можно было передавать сообщение и создавать новые виды исключений.
+
+Создайте исключение от этого класса в переменной capitals_error с сообщением:
+
+ТОЛЬКО БОЛЬШИЕ БУКВЫ РАЗРЕШЕНЫ В ЭТОМ КОДЕ
+Напишите функцию check_letters(вне класса, отдельно от класса), проверяющую строки на регистр и если строка не написана в верхнем регистре выбросите исключение созданное классом CustomError:
+
+Если же все хорошо необходимо вывести сообщение: ВСЕ ОТЛИЧНО! {ваша строка}.
+
+"""
+class CustomError(Exception):
+    def __init__(self, error):
+        self.error = error
+
+def check_letters(str_):
+    if not str_.isupper():
+        raise capitals_error
+    else :
+        return f'ВСЕ ОТЛИЧНО! {str_}'
+
+capitals_error = CustomError('ТОЛЬКО БОЛЬШИЕ БУКВЫ РАЗРЕШЕНЫ В ЭТОМ КОДЕ')
+print(check_letters("HELLo")) 
+
+
+"""
+Принципы ООП. Полиморфизм.
+Задание 3
+Создайте 3 класса: Person с параметрами name и last_name, Employee с work и status, Student c university и course, при этом Employee и Student должны наследоваться от Person.
+
+Определите во всех трёх классах метод get_info():
+
+для класса Person он должен возвращать следующее: “Привет, меня зовут Иван Петров”.
+
+для класса Employee он должен возвращать: “Привет, меня зовут Иван Петров, я работаю в компании Рога и копыта на должности директор.
+
+для класса Student должно возвращаться: “Привет, меня зовут Иван Петров, я учусь в КГТУ на 3 курсе”.
+
+Вне класса, определите функцию get_human_info(), которая будет принимать объект одного из трёх классов и вызывать у него метод get_info и распечатывать результат этой функции.
+Создайте для каждого класса по экземпляру, для Person экземпляр person, для Employee экземпляр employee и student для класса Student.
+
+Вызовите метод get_human_info у каждого экземпляра печатать результат.
+
+Ввод должен быть:
+
+get_human_info(employee) 
+get_human_info(student) 
+get_human_info(person) 
+"""
+class Person:
+    def __init__(self, name, last_name):
+        self.name = name
+        self.last_name = last_name
+
+    def get_info(self):
+        return f'Привет, меня зовут {self.name} {self.last_name}'
+
+class Employee(Person):
+    def __init__(self, name, last_name, work, status):
+        super().__init__(name, last_name)
+        self.work = work
+        self.status = status
+    
+    def get_info(self):
+        return f'Привет, меня зовут {self.name} {self.last_name}, я работаю в компании {self.work} на должности {self.status}'
+
+class Student(Person):
+    def __init__(self,name, last_name, university, course):
+        super().__init__(name, last_name)
+        self.university = university
+        self.course = course
+
+    def get_info(self):
+        return f'Привет, меня зовут {self.name} {self.last_name}, я учусь в {self.university} на {self.course} курсе'
+    
+def get_human_info(obj):
+    print(obj.get_info())
+
+person = Person("Иван", "Петров")
+employee = Employee("Иван", "Петров", "Рога и копыта", "директор")
+student = Student("Иван", "Петров","КГТУ", "3")
+
+get_human_info(employee)
+get_human_info(student)
+get_human_info(person)
