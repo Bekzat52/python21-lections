@@ -111,10 +111,10 @@ print (format2 % ("Гуляш","250"), format2 % ("Самсы","70"),sep ='\v')
 ' '.join(['hello','world']) # 'hello world'
 ''.join(['hello','world']) # 'helloworld'
 ' '.join(['hello','world'.split()]) # 'hello world'
-'o'.join(['hello','world'.split(o)]) # 'hello world
+'o'.join(['hello','world'.split('o')]) # 'hello world
 # конкатенация - склеивание строк
 'hello'+ 'world' 
-chr().isalpha()s
+chr().isalpha()
 
 
 
