@@ -31,7 +31,7 @@ key2, value2 = 'cd'
 dict4[key2] = value2
 key3, value3 = 'de'
 dict4[key3] = value3
-
+dict1.update()
 
 dict5 = dict(['abc']) # ValueError: dictionary update sequence element #0 has length 3; 2 is required
 key1, value1 = 'abc' #
